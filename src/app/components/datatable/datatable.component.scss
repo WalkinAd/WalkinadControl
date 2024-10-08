@@ -1,0 +1,50 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  table {
+    width: 100%;
+    border-radius: 2px;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 8px 10px -5px rgba(0,0,0,0.2), 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12);
+  }
+
+  .text-right{
+    text-align: right;
+  }
+  .sticky{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .table-container{
+    border-top: 1px solid #797979;
+    width: 100%; 
+    height:calc(100% - 130px);
+    overflow:auto;
+  }
+
+  .actions{
+    display:flex;
+    justify-content: space-between;
+  }
+  .action-button {
+    width: 60px;
+    height: 60px;
+    .mat-icon{
+      font-size: 30px!important;
+      height: 24px!important;
+      width: 29px!important;
+    }
+    border:1px solid rgb(108 108 108);
+  }
+  
+  .search-bar{
+    width:min(300px,49%);
+    margin-bottom: 0px!important;
+  }

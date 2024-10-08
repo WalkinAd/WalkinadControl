@@ -1,0 +1,33 @@
+// Definir algunas variables para personalización
+$login-container-width: 400px;
+$login-margin-top: 50px;
+$padding: 20px;
+$box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$background-color: #fff;
+
+.login-container {
+  max-width: $login-container-width;
+  margin: $login-margin-top auto;
+  padding: $padding;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  background-color: $background-color;
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  form {
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}

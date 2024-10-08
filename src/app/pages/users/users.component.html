@@ -1,0 +1,77 @@
+<div style="padding:5px;height: calc(100% - 10px);">
+    <app-datatable 
+        [data]="users"
+        [columns]="usersColumns"
+        [actions]="userActions"
+    >
+    </app-datatable>
+  
+    <!-- Botón para agregar un nuevo usuario -->
+    <!-- <button mat-button (click)="openAddEditUserDialog()">Agregar Usuario</button>
+  
+    <ng-container *ngFor="let user of users">
+      <button mat-button (click)="openAddEditUserDialog(user)">Editar</button>
+      <button mat-button (click)="openConfirmDeleteDialog(user)">Eliminar</button>
+      <button mat-button (click)="openAssignPermissionsDialog(user)">Asignar Permisos</button>
+    </ng-container> -->
+  </div>
+  
+  <!-- Modal para añadir/editar usuario -->
+  <ng-template #addEditUserDialog>
+    <h2 mat-dialog-title>{{ isEdit ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+  
+    <mat-dialog-content>
+      <form [formGroup]="userForm">
+        <mat-form-field>
+          <mat-label>Nombre de usuario</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password">
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">Cancelar</button>
+      <button mat-button (click)="saveUser()" [disabled]="!userForm.valid">
+        {{ isEdit ? 'Guardar' : 'Agregar' }}
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+  
+  <!-- Modal para asignar permisos -->
+  <ng-template #assignPermissionsDialog>
+    <h2 mat-dialog-title>Asignar Permisos</h2>
+  
+    <mat-dialog-content>
+      <form [formGroup]="permissionsForm">
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <!-- Más campos de permisos según tu lógica -->
+      </form>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">Cancelar</button>
+      <button mat-button (click)="savePermissions()" [disabled]="!permissionsForm.valid">
+        Guardar
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+  
+
+
+

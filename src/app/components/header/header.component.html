@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="header-container">
+  <div style="display:flex;align-items: center;">
+    <button mat-button class="menu-button" (click)="toggleDrawer()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h3>WalkinAd</h3>
+  </div>
+  <button class="profile-button"  mat-icon-button [matMenuTriggerFor]="userMenu" (click)="toggleUserMenu($event)">
+    <img *ngIf="user?.photoUrl" [src]="user?.photoUrl" alt="Perfil" class="profile-pic" />
+  </button>
+
+  <mat-menu #userMenu="matMenu" id="user-menu">
+    <div class="user-info" *ngIf="user">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Role:</strong> {{ user.role }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+    <button mat-menu-item (click)="onLogout()" *ngIf="user">Cerrar sesión</button>
+  </mat-menu>
+
+</mat-toolbar>

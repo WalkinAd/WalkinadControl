@@ -1,0 +1,28 @@
+<div class="login-container">
+  <h2>Admin panel</h2>
+  <h6>Iniciar sesión</h6>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput id="email" type="email" [(ngModel)]="email" name="email" required />
+      <mat-error *ngIf="!email && touched">
+        El correo es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput id="password" type="password" [(ngModel)]="password" name="password" required />
+      <mat-error *ngIf="!password && touched">
+        La contraseña es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Mostrar error general en caso de problemas con la autenticación -->
+    <div *ngIf="errorMessage" class="error-message">
+      <small>{{ errorMessage }}</small>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
+  </form>
+</div>

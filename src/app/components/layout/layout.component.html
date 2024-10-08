@@ -1,0 +1,19 @@
+
+<app-header (toggleSidenav)="toggleDrawer()"></app-header>
+
+<mat-sidenav-container class="sidenav-container floating_drawer plain_border">
+  <mat-sidenav #drawer class="sidenav plain_border" mode="over" [(opened)]="isDrawerOpen" (click)="$event.stopPropagation()">
+    <nav class="routes">
+      <a mat-button (click)="closeDrawer()" routerLink="/dashboard">Inicio</a>
+      <a mat-button (click)="closeDrawer()" routerLink="/users">Usuarios</a>
+    </nav>
+  </mat-sidenav>
+  <div class="backdrop" *ngIf="isDrawerOpen" (click)="closeDrawer()"></div>
+</mat-sidenav-container>
+
+<main class="main">
+    <router-outlet></router-outlet>
+</main>
+
+<!-- <app-footer></app-footer>
+ -->

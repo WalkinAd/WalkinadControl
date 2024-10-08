@@ -1,0 +1,61 @@
+<div class="actions">
+  <!-- Solo acciones con 'standalone' en true -->
+  <ng-container *ngFor="let action of actions">
+    <ng-container *ngIf="action.standalone">
+      <button mat-icon-button 
+              class="action-button" 
+              [matTooltip]="action.tooltip" 
+              (click)="executeAction(action, null)">
+        <mat-icon>{{ action.icon }}</mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+  
+  <!-- Barra de búsqueda -->
+  <mat-form-field appearance="outline" class="search-bar">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar en la tabla">
+  </mat-form-field>
+</div>
+
+<div class="table-container">
+  <!-- Tabla con columnas generadas dinámicamente -->
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Usa *ngFor para crear dinámicamente las columnas basadas en el array 'columns' -->
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+      <th class="sticky" mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element[column] }}
+      </td>
+    </ng-container>
+
+    <!-- Nueva columna para el botón de opciones -->
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef class="sticky text-right" >
+        <mat-icon style="margin-right: 10px;">settings</mat-icon> 
+      </th>
+      <td mat-cell *matCellDef="let element" class="text-right">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Opciones">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <ng-container *ngFor="let action of actions">
+            <ng-container *ngIf="!action.standalone">
+              <button mat-menu-item (click)="executeAction(action, element)">
+                <mat-icon>{{ action.icon }}</mat-icon> {{ action.tooltip }}
+              </button>
+            </ng-container>
+          </ng-container>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <!-- Cabecera y filas -->
+    <tr mat-header-row *matHeaderRowDef="columns.concat(['options'])"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns.concat(['options']);"></tr>
+  </table>
+</div>
+
+<!-- Paginación -->
+<mat-paginator [pageSizeOptions]="[10, 25,50]" showFirstLastButtons></mat-paginator>
